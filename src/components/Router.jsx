@@ -6,11 +6,22 @@ import PoliticaPrivacidade from '../pages/PoliticaPrivacidade';
 import TermosUso from '../pages/TermosUso';
 
 const Router = () => {
-  const [path, setPath] = useState(window.location.pathname);
+  const [path, setPath] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.location.pathname;
+    }
+    return '/';
+  });
 
   useEffect(() => {
-    const handlePopState = () => {
+    if (typeof window === 'undefined') return;
+
+    const updatePath = () => {
       setPath(window.location.pathname);
+    };
+
+    const handlePopState = () => {
+      updatePath();
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -23,12 +34,15 @@ const Router = () => {
         if (href !== window.location.pathname) {
           e.preventDefault();
           window.history.pushState({}, '', href);
-          setPath(href);
+          updatePath();
         }
       }
     };
 
     document.addEventListener('click', handleClick);
+
+    // Atualiza o path quando a página carrega (importante para Vercel)
+    updatePath();
 
     return () => {
       window.removeEventListener('popstate', handlePopState);
