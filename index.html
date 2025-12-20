@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Aprenda a apostar com sabedoria e disciplina. Método comprovado para apostadores que buscam resultados consistentes." />
+    <title>Método X - Mentoria em Apostas Esportivas</title>
+    
+    <!-- TrackPixel Script -->
+    <script>
+      (function() {
+        var s = document.createElement('script');
+        s.src = 'https://de66610a-5c19-4559-9ecf-ce4f93bde6c4-00-fhw24gm4fh4k.riker.replit.dev/tracking.js?f=be7ad872-efab-44ae-8fc8-419855c98a45';
+        s.async = true;
+        document.head.appendChild(s);
+      })();
+    </script>
+    
+    <!-- Meta Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1359109655309883');
+      fbq('track', 'PageView');
+    </script>
+    <!-- End Meta Pixel Code -->
+  </head>
+  <body>
+    <!-- Meta Pixel Noscript -->
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=1359109655309883&ev=PageView&noscript=1"
+    /></noscript>
+    
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- TrackPixel Body Script -->
+    <script>
+      // Aguarda o TrackPixel carregar e inicializa tracking de cliques
+      window.addEventListener('load', function() {
+        if (window.TrackPixel) {
+          // Rastreia cliques em links do Telegram
+          document.addEventListener('click', function(e) {
+            var target = e.target.closest('a[data-telegram-link]');
+            if (target) {
+              window.TrackPixel.track('Click', {
+                link: 'telegram_group',
+                action: 'enter_group'
+              });
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
+

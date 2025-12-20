@@ -1,0 +1,148 @@
+# Guia de Integração TrackPixel
+
+## Instalação Básica
+
+Adicione o script de tracking no `<head>` de todas as páginas do seu site:
+
+```html
+<script>
+(function() {
+  var s = document.createElement('script');
+  s.src = 'https://dalhy.com/tracking.js?f=SEU_FUNNEL_ID';
+  s.async = true;
+  document.head.appendChild(s);
+})();
+</script>
+```
+
+> **Substitua** `SEU_FUNNEL_ID` pelo ID do seu funil no TrackPixel.
+
+---
+
+## Link de Convite Tracked
+
+Use o link gerado pelo TrackPixel no seu botão de entrada no grupo:
+
+```
+https://dalhy.com/r/SEU_FUNNEL_ID
+```
+
+Ou use JavaScript para obter o link com o visitor ID:
+
+```javascript
+// Obtém o link de convite com parâmetros de tracking
+var trackingLink = window.TrackPixel.getTrackingLink();
+document.getElementById('meu-botao').href = trackingLink;
+```
+
+---
+
+## Melhorando a Qualidade do Pixel (Opcional, mas RECOMENDADO)
+
+Quanto mais dados você enviar, maior será a qualidade de correspondência no Meta Pixel.
+
+### Quando capturar dados do usuário
+
+Capture e envie dados quando o usuário:
+- Preencher um formulário de cadastro
+- Fazer login
+- Informar dados de contato
+- Preencher qualquer formulário
+
+### Como enviar dados do usuário
+
+```javascript
+// Após capturar dados do usuário (ex: formulário de lead)
+window.TrackPixel.setUserData({
+  email: "usuario@email.com",        // +44% qualidade
+  phone: "5511999999999",            // +32% qualidade (formato: código do país + DDD + número)
+  firstName: "João",                  // +20% qualidade
+  lastName: "Silva",                  // +20% qualidade
+  city: "São Paulo",                  // +20% qualidade
+  state: "SP",                        // +20% qualidade
+  zipCode: "01310100",               // +20% qualidade (sem hífen)
+  country: "BR",                      // código ISO do país
+  dateOfBirth: "1990-01-15",         // formato YYYY-MM-DD
+  gender: "m"                         // "m" para masculino, "f" para feminino
+});
+```
+
+> **Importante**: Os dados são armazenados no navegador do usuário e enviados automaticamente em todos os eventos subsequentes. Você só precisa chamar `setUserData()` uma vez.
+
+### Exemplo Prático com Formulário
+
+```html
+<form id="form-lead">
+  <input type="text" id="nome" placeholder="Seu nome" required>
+  <input type="email" id="email" placeholder="Seu e-mail" required>
+  <input type="tel" id="telefone" placeholder="Seu WhatsApp" required>
+  <button type="submit">Entrar no Grupo VIP</button>
+</form>
+
+<script>
+document.getElementById('form-lead').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  // Captura os dados do formulário
+  var nome = document.getElementById('nome').value;
+  var email = document.getElementById('email').value;
+  var telefone = document.getElementById('telefone').value;
+  
+  // Separa primeiro e último nome
+  var nomes = nome.split(' ');
+  var firstName = nomes[0];
+  var lastName = nomes.length > 1 ? nomes.slice(1).join(' ') : '';
+  
+  // Envia para o TrackPixel
+  window.TrackPixel.setUserData({
+    email: email,
+    phone: telefone.replace(/\D/g, ''), // Remove caracteres não numéricos
+    firstName: firstName,
+    lastName: lastName
+  });
+  
+  // Redireciona para o grupo usando o link tracked
+  window.location.href = window.TrackPixel.getTrackingLink();
+});
+</script>
+```
+
+---
+
+## Funções Disponíveis
+
+| Função | Descrição |
+|--------|-----------|
+| `window.TrackPixel.track(eventType, extraData)` | Envia um evento customizado |
+| `window.TrackPixel.setUserData(data)` | Define dados do usuário para melhorar matching |
+| `window.TrackPixel.getUserData()` | Retorna os dados do usuário armazenados |
+| `window.TrackPixel.getVisitorId()` | Retorna o ID único do visitante |
+| `window.TrackPixel.getTrackingLink()` | Retorna o link de convite com parâmetros de tracking |
+| `window.TrackPixel.getFbp()` | Retorna o Facebook Browser ID (cookie _fbp) |
+| `window.TrackPixel.getFbc()` | Retorna o Facebook Click ID (cookie _fbc ou gerado do fbclid) |
+
+---
+
+## Eventos Automáticos
+
+O script já rastreia automaticamente:
+
+1. **PageView** - Quando a página carrega
+2. **Click** - Quando o usuário clica em links ou botões
+3. **EnterChannel** - Quando o usuário entra no grupo do Telegram
+4. **LeaveChannel** - Quando o usuário sai do grupo do Telegram
+
+---
+
+## Dicas para Maximizar a Qualidade
+
+1. **Sempre colete email e telefone** antes de enviar o usuário para o grupo
+2. **Use o link tracked** (`getTrackingLink()`) ao invés de links diretos do Telegram
+3. **Mantenha o Meta Pixel instalado** no site para capturar os cookies _fbp e _fbc
+4. **Teste seus anúncios** - usuários vindos do Facebook têm maior qualidade de correspondência
+
+---
+
+## Suporte
+
+Em caso de dúvidas, entre em contato pelo e-mail: contato@haast.com.br
