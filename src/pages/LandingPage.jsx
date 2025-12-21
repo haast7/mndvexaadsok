@@ -25,22 +25,22 @@ const LandingPage = () => {
         </div>
 
         {/* Imagem do Especialista no canto direito - alinhada na base e colada à direita */}
-        <div className="absolute bottom-0 right-0 z-20 w-full md:w-[65%] lg:w-[60%] xl:w-[55%] h-full pointer-events-none overflow-hidden">
+        <div className="absolute bottom-0 right-0 z-10 md:z-20 w-full md:w-[65%] lg:w-[60%] xl:w-[55%] h-full pointer-events-none overflow-hidden">
           <div className="relative w-full h-full flex items-end justify-end">
             <img 
               src="/ESPECIALISTA.png" 
               alt="Especialista" 
-              className="h-[75%] md:h-full w-auto object-contain object-right-bottom"
+              className="h-[60%] md:h-full w-auto object-contain object-right-bottom"
               style={{ maxWidth: '100%', maxHeight: '100%', marginRight: '0' }}
             />
           </div>
         </div>
 
         {/* Conteúdo */}
-        <div className="relative z-10 h-full flex items-start md:items-center px-4 sm:px-6 lg:px-8 pt-8 pb-4 md:py-16">
+        <div className="relative z-20 h-full flex items-start md:items-center px-4 sm:px-6 lg:px-8 pt-8 pb-4 md:py-16">
           <div className="max-w-7xl mx-auto w-full h-full flex items-start md:items-center">
             {/* Copy e CTA - Lado Esquerdo */}
-            <div className="max-w-2xl text-center md:text-left relative z-30">
+            <div className="max-w-2xl text-center md:text-left relative z-30 w-full">
               <div className="space-y-6 md:space-y-8">
               <div className="space-y-4 md:space-y-6">
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
