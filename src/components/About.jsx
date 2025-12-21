@@ -9,11 +9,16 @@ const About = () => {
           <div className="relative order-2 md:order-1">
             <div className="relative z-10">
               <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-primary-100 to-primary-200">
-                <img 
-                  src="/man-t-shirt.jpg.jpeg" 
-                  alt="Especialista em Apostas Esportivas" 
-                  className="w-full h-full object-cover"
-                />
+                <picture>
+                  <source srcSet="/man-t-shirt.webp" type="image/webp" />
+                  <img 
+                    src="/man-t-shirt.jpg.jpeg" 
+                    alt="Especialista em Apostas Esportivas" 
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
               </div>
             </div>
             <div className="absolute -bottom-4 -right-4 w-full h-full bg-primary-300 rounded-2xl -z-10"></div>

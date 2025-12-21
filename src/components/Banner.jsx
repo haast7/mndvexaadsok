@@ -20,15 +20,20 @@ const Banner = ({ imagePath = '/banner-pagina.jpg', alt = 'Banner' }) => {
         className="w-full cursor-pointer hover:opacity-95 transition-opacity duration-300"
       >
         <div className="relative w-full h-auto min-h-[300px] md:min-h-[400px] lg:min-h-[500px] flex items-center justify-center py-8">
-          <img 
-            src={imagePath} 
-            alt={alt}
-            className="w-full h-auto max-h-[600px] object-contain"
-            onError={(e) => {
-              e.target.style.display = 'none';
-              e.target.nextElementSibling.style.display = 'flex';
-            }}
-          />
+          <picture>
+            <source srcSet={imagePath.replace(/\.(png|jpg|jpeg)$/i, '.webp')} type="image/webp" />
+            <img 
+              src={imagePath} 
+              alt={alt}
+              className="w-full h-auto max-h-[600px] object-contain"
+              loading="lazy"
+              decoding="async"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextElementSibling.style.display = 'flex';
+              }}
+            />
+          </picture>
           <div className="w-full h-full flex items-center justify-center bg-gray-800" style={{ display: 'none' }}>
             <div className="text-center p-8">
               <svg className="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -35,6 +35,8 @@ const Router = () => {
           e.preventDefault();
           window.history.pushState({}, '', href);
           updatePath();
+          // Scroll para o topo quando mudar de página
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       }
     };
@@ -49,6 +51,13 @@ const Router = () => {
       document.removeEventListener('click', handleClick);
     };
   }, []);
+
+  // Scroll para o topo sempre que o path mudar
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [path]);
 
   switch (path) {
     case '/metodox':

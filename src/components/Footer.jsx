@@ -6,12 +6,17 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Logo King Panda */}
         <div className="mb-8 flex justify-center">
-          <img 
-            src="/kingpanda-logo.png.png" 
-            alt="King Panda - Jogue com Responsabilidade" 
-            className="max-w-full h-auto"
-            style={{ maxHeight: '120px' }}
-          />
+          <picture>
+            <source srcSet="/kingpanda-logo.png.webp" type="image/webp" />
+            <img 
+              src="/kingpanda-logo.png.png" 
+              alt="King Panda - Jogue com Responsabilidade" 
+              className="max-w-full h-auto"
+              style={{ maxHeight: '120px' }}
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 mb-8">

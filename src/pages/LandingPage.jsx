@@ -15,11 +15,19 @@ const LandingPage = () => {
       <div className="relative md:h-[90vh] lg:h-[85vh] overflow-auto md:overflow-hidden">
         {/* Background com imagem - acompanha a altura do conteúdo */}
         <div className="absolute inset-0 md:h-full">
-          <img 
-            src="/BG.png" 
-            alt="Background" 
-            className="w-full h-full object-cover object-center md:object-center object-bottom md:object-center"
-          />
+          <picture>
+            <source srcSet="/BG-_1__11zon.webp" type="image/webp" />
+            <img 
+              src="/BG.png" 
+              alt="Background" 
+              className="w-full h-full object-cover object-center md:object-center object-bottom md:object-center"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              width="1920"
+              height="1080"
+            />
+          </picture>
           {/* Overlay gradiente para melhorar legibilidade do texto à esquerda */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
         </div>
@@ -27,11 +35,19 @@ const LandingPage = () => {
         {/* Imagem do Especialista - Desktop colada na base */}
         <div className="hidden md:block absolute bottom-0 right-0 z-20 w-[70%] lg:w-[65%] xl:w-[60%] h-full pointer-events-none overflow-hidden">
           <div className="relative w-full h-full flex items-end justify-end">
-            <img 
-              src="/ESPECIALISTA.png" 
-              alt="Especialista" 
-              className="w-auto h-full object-contain object-right-bottom object-bottom"
-            />
+            <picture>
+              <source srcSet="/ESPECIALISTA-_1_.webp" type="image/webp" />
+              <img 
+                src="/ESPECIALISTA.png" 
+                alt="Especialista" 
+                className="w-auto h-full object-contain object-right-bottom object-bottom"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                width="1200"
+                height="1600"
+              />
+            </picture>
           </div>
         </div>
 
@@ -80,11 +96,18 @@ const LandingPage = () => {
 
         {/* Imagem do Especialista - Mobile abaixo do texto "Acesso imediato" */}
         <div className="block md:hidden relative mt-6 z-10 w-full pointer-events-none overflow-visible flex justify-center items-end px-4 sm:px-6">
-          <img 
-            src="/ESPECIALISTA.png" 
-            alt="Especialista" 
-            className="w-full max-h-[60vh] h-auto object-contain object-bottom"
-          />
+          <picture>
+            <source srcSet="/ESPECIALISTA-_1_.webp" type="image/webp" />
+            <img 
+              src="/ESPECIALISTA.png" 
+              alt="Especialista" 
+              className="w-full max-h-[60vh] h-auto object-contain object-bottom"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="1067"
+            />
+          </picture>
         </div>
       </div>
 
@@ -93,12 +116,19 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Logo King Panda */}
           <div className="mb-6 flex justify-center">
-            <img 
-              src="/kingpanda-logo.png.png" 
-              alt="King Panda - Jogue com Responsabilidade" 
-              className="max-w-full h-auto"
-              style={{ maxHeight: '100px' }}
-            />
+            <picture>
+              <source srcSet="/kingpanda-logo.png.webp" type="image/webp" />
+              <img 
+                src="/kingpanda-logo.png.png" 
+                alt="King Panda - Jogue com Responsabilidade" 
+                className="max-w-full h-auto"
+                style={{ maxHeight: '100px' }}
+                loading="lazy"
+                decoding="async"
+                width="200"
+                height="100"
+              />
+            </picture>
           </div>
 
           {/* Texto de Disclaimer */}

@@ -8,7 +8,7 @@ const TermosUso = () => {
     <div className="min-h-screen bg-white flex flex-col">
       <NavbarPolicy />
       <div className="pt-16 md:pt-20">
-        <Banner imagePath="/LP_02.png" alt="Método X" />
+        <Banner imagePath="/LP_02.webp" alt="Método X" />
       </div>
       <div className="pb-20 flex-grow">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -6,5 +6,19 @@ export default defineConfig({
   server: {
     historyApiFallback: true,
   },
+  build: {
+    // Otimizações de build
+    minify: 'esbuild',
+    cssMinify: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+        },
+      },
+    },
+    // Chunk size warnings
+    chunkSizeWarningLimit: 1000,
+  },
 })
 
