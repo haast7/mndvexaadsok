@@ -52,3 +52,38 @@
   background-size: 200% 100%;
 }
 
+.animate-shimmer-telegram {
+  animation: shimmer 2s linear infinite;
+  background: linear-gradient(
+    90deg,
+    #229ED9 0%,
+    #0088cc 25%,
+    #40A8E0 50%,
+    #0088cc 75%,
+    #229ED9 100%
+  );
+  background-size: 200% 100%;
+}
+
+.text-gradient-blue-mobile {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 3px 8px;
+  border-radius: 8px;
+  display: inline-block;
+  line-height: 1.2;
+  color: #0088cc;
+  -webkit-text-fill-color: #0088cc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 768px) {
+  .text-gradient-blue-mobile {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    box-shadow: none;
+  }
+}
+

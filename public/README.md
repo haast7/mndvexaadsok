@@ -12,3 +12,5 @@ Ou altere o caminho no componente `About.jsx` para o nome do seu arquivo.
 
 Formatos suportados: JPG, PNG, WebP
 
+
+

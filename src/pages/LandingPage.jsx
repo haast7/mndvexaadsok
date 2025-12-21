@@ -11,55 +11,44 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden flex flex-col">
-      {/* Background com gradiente e efeitos */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-        {/* Padrão de pontos */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-            backgroundSize: '40px 40px'
-          }}></div>
+      {/* Seção Hero com altura reduzida */}
+      <div className="relative h-[85vh] md:h-[90vh] lg:h-[85vh] overflow-hidden">
+        {/* Background com imagem */}
+        <div className="absolute inset-0">
+          <img 
+            src="/BG.png" 
+            alt="Background" 
+            className="w-full h-full object-cover object-center"
+          />
+          {/* Overlay gradiente para melhorar legibilidade do texto à esquerda */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
         </div>
-        
-        {/* Círculos animados de fundo */}
-        <div className="absolute top-20 left-10 w-96 h-96 bg-primary-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-400 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float" style={{ animationDelay: '2s' }}></div>
-      </div>
 
-      {/* Conteúdo */}
-      <div className="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          {/* Foto Grande */}
-          <div className="order-2 md:order-1">
-            <div className="relative">
-              <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500">
-                <img 
-                  src="/man-t-shirt.jpg.jpeg" 
-                  alt="Especialista em Apostas Esportivas" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              {/* Brilho decorativo */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-primary-500/20 to-accent-500/20 rounded-3xl blur-2xl -z-10"></div>
-            </div>
+        {/* Imagem do Especialista no canto direito - alinhada na base e colada à direita */}
+        <div className="absolute bottom-0 right-0 z-20 w-full md:w-[65%] lg:w-[60%] xl:w-[55%] h-full pointer-events-none overflow-hidden">
+          <div className="relative w-full h-full flex items-end justify-end">
+            <img 
+              src="/ESPECIALISTA.png" 
+              alt="Especialista" 
+              className="h-[75%] md:h-full w-auto object-contain object-right-bottom"
+              style={{ maxWidth: '100%', maxHeight: '100%', marginRight: '0' }}
+            />
           </div>
+        </div>
 
-          {/* Copy e CTA */}
-          <div className="order-1 md:order-2 text-center md:text-left">
-            <div className="space-y-8">
-              <div>
-                <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                  Transforme sua
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400 mt-2">
-                    Mentalidade
-                  </span>
+        {/* Conteúdo */}
+        <div className="relative z-10 h-full flex items-start md:items-center px-4 sm:px-6 lg:px-8 pt-8 pb-4 md:py-16">
+          <div className="max-w-7xl mx-auto w-full h-full flex items-start md:items-center">
+            {/* Copy e CTA - Lado Esquerdo */}
+            <div className="max-w-2xl text-center md:text-left relative z-30">
+              <div className="space-y-6 md:space-y-8">
+              <div className="space-y-4 md:space-y-6">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+                  Pare de <span className="text-gradient-blue-mobile md:text-transparent md:bg-clip-text md:bg-gradient-to-r md:from-blue-400 md:via-blue-500 md:to-blue-400">perder dinheiro</span>
+                  <span className="block mt-2">apostando no escuro.</span>
                 </h1>
-                <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-xl mx-auto md:mx-0">
-                  Junte-se ao <strong className="text-white">Método X</strong> e aprenda a apostar com 
-                  <strong className="text-primary-400"> sabedoria</strong>, 
-                  <strong className="text-primary-400"> disciplina</strong> e 
-                  <strong className="text-primary-400"> estratégia</strong>.
+                <p className="text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed max-w-xl">
+                  Aqui você entra para aprender como decisões inteligentes são feitas antes de continuar errando sozinho.
                 </p>
               </div>
 
@@ -70,16 +59,13 @@ const LandingPage = () => {
                   rel="noopener noreferrer"
                   data-telegram-link="true"
                   onClick={handleTelegramClick}
-                  className="inline-block px-10 py-5 bg-gradient-to-r from-primary-500 via-primary-600 to-primary-500 text-white font-bold text-xl rounded-xl shadow-2xl hover:shadow-primary-500/50 transform hover:scale-105 transition-all duration-300 animate-shimmer"
-                  style={{
-                    backgroundSize: '200% 100%'
-                  }}
+                  className="inline-block px-10 py-5 text-white font-bold text-xl rounded-xl shadow-2xl hover:shadow-blue-500/50 transform hover:scale-105 transition-all duration-300 relative overflow-hidden animate-shimmer-telegram"
                 >
                   <span className="flex items-center justify-center gap-3">
                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.12l-6.87 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
                     </svg>
-                    Entrar no Grupo Agora
+                    Entrar agora e aprender o método
                   </span>
                 </a>
                 
@@ -88,20 +74,6 @@ const LandingPage = () => {
                 </p>
               </div>
 
-              {/* Features rápidas */}
-              <div className="grid grid-cols-3 gap-4 pt-8 border-t border-white/10">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary-400 mb-1">4</div>
-                  <div className="text-sm text-gray-400">Pilares</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary-400 mb-1">24/7</div>
-                  <div className="text-sm text-gray-400">Suporte</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary-400 mb-1">100%</div>
-                  <div className="text-sm text-gray-400">Gratuito</div>
-                </div>
               </div>
             </div>
           </div>
