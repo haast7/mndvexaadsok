@@ -1,8 +1,8 @@
 // Configuração do TrackPixel
-export const FUNNEL_ID = 'be7ad872-efab-44ae-8fc8-419855c98a45';
+export const FUNNEL_ID = '2bfbeb36-59ce-48d4-906e-2e7e7390d317';
 
 // Link base do Telegram (link trackeado)
-export const TELEGRAM_GROUP_LINK = 'https://de66610a-5c19-4559-9ecf-ce4f93bde6c4-00-fhw24gm4fh4k.riker.replit.dev/r/be7ad872-efab-44ae-8fc8-419855c98a45';
+export const TELEGRAM_GROUP_LINK = 'https://dalhy.com/r/2bfbeb36-59ce-48d4-906e-2e7e7390d317';
 
 // Função para obter o link trackeado
 export const getTrackingLink = () => {
