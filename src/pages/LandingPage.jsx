@@ -12,9 +12,9 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen relative overflow-hidden flex flex-col">
       {/* Seção Hero com altura reduzida */}
-      <div className="relative min-h-[100vh] md:h-[90vh] lg:h-[85vh] overflow-auto md:overflow-hidden">
+      <div className="relative md:h-[90vh] lg:h-[85vh] overflow-auto md:overflow-hidden">
         {/* Background com imagem */}
-        <div className="absolute inset-0 h-full md:h-full">
+        <div className="absolute inset-0 md:h-full min-h-full">
           <img 
             src="/BG.png" 
             alt="Background" 
@@ -25,8 +25,8 @@ const LandingPage = () => {
         </div>
 
         {/* Conteúdo */}
-        <div className="relative z-20 min-h-[100vh] md:h-full flex flex-col md:flex-row items-start md:items-center px-4 sm:px-6 lg:px-8 pt-8 pb-0 md:py-16">
-          <div className="max-w-7xl mx-auto w-full h-full flex flex-col md:flex-row items-start md:items-center justify-between min-h-[100vh] md:min-h-0">
+        <div className="relative z-20 md:h-full flex flex-col md:flex-row items-start md:items-center px-4 sm:px-6 lg:px-8 pt-8 pb-4 md:py-16">
+          <div className="max-w-7xl mx-auto w-full h-full flex flex-col md:flex-row items-start md:items-center justify-between">
             {/* Copy e CTA - Lado Esquerdo */}
             <div className="max-w-2xl text-center md:text-left relative z-30 w-full md:w-auto">
               <div className="space-y-8 md:space-y-8">
@@ -65,8 +65,8 @@ const LandingPage = () => {
               </div>
             </div>
 
-            {/* Imagem do Especialista - Mobile abaixo do botão, Desktop à direita */}
-            <div className="relative mt-12 md:mt-0 md:absolute md:bottom-0 md:right-0 z-10 md:z-20 w-full md:w-[65%] lg:w-[60%] xl:w-[55%] md:h-full pointer-events-none overflow-visible md:overflow-hidden flex justify-center md:justify-end items-end self-end">
+            {/* Imagem do Especialista - Mobile abaixo do texto "Acesso imediato", Desktop à direita */}
+            <div className="relative mt-3 md:mt-0 md:absolute md:bottom-0 md:right-0 z-10 md:z-20 w-full md:w-[65%] lg:w-[60%] xl:w-[55%] md:h-full pointer-events-none overflow-visible md:overflow-hidden flex justify-center md:justify-end items-end self-end">
               <img 
                 src="/ESPECIALISTA.png" 
                 alt="Especialista" 
