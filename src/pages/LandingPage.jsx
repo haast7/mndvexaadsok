@@ -12,9 +12,9 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen relative overflow-hidden flex flex-col">
       {/* Seção Hero com altura reduzida */}
-      <div className="relative h-[85vh] md:h-[90vh] lg:h-[85vh] overflow-hidden">
+      <div className="relative min-h-[100vh] md:h-[90vh] lg:h-[85vh] overflow-auto md:overflow-hidden">
         {/* Background com imagem */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 h-full md:h-full">
           <img 
             src="/BG.png" 
             alt="Background" 
@@ -24,25 +24,13 @@ const LandingPage = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
         </div>
 
-        {/* Imagem do Especialista no canto direito - alinhada na base e colada à direita */}
-        <div className="absolute bottom-0 right-0 z-10 md:z-20 w-full md:w-[65%] lg:w-[60%] xl:w-[55%] h-full pointer-events-none overflow-hidden">
-          <div className="relative w-full h-full flex items-end justify-end">
-            <img 
-              src="/ESPECIALISTA.png" 
-              alt="Especialista" 
-              className="h-[60%] md:h-full w-auto object-contain object-right-bottom"
-              style={{ maxWidth: '100%', maxHeight: '100%', marginRight: '0' }}
-            />
-          </div>
-        </div>
-
         {/* Conteúdo */}
-        <div className="relative z-20 h-full flex items-start md:items-center px-4 sm:px-6 lg:px-8 pt-8 pb-4 md:py-16">
-          <div className="max-w-7xl mx-auto w-full h-full flex items-start md:items-center">
+        <div className="relative z-20 min-h-[100vh] md:h-full flex flex-col md:flex-row items-start md:items-center px-4 sm:px-6 lg:px-8 pt-8 pb-0 md:py-16">
+          <div className="max-w-7xl mx-auto w-full h-full flex flex-col md:flex-row items-start md:items-center justify-between min-h-[100vh] md:min-h-0">
             {/* Copy e CTA - Lado Esquerdo */}
-            <div className="max-w-2xl text-center md:text-left relative z-30 w-full">
-              <div className="space-y-6 md:space-y-8">
-              <div className="space-y-4 md:space-y-6">
+            <div className="max-w-2xl text-center md:text-left relative z-30 w-full md:w-auto">
+              <div className="space-y-8 md:space-y-8">
+              <div className="space-y-6 md:space-y-6">
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
                   Pare de <span className="text-gradient-blue-mobile md:text-transparent md:bg-clip-text md:bg-gradient-to-r md:from-blue-400 md:via-blue-500 md:to-blue-400">perder dinheiro</span>
                   <span className="block mt-2">apostando no escuro.</span>
@@ -75,6 +63,16 @@ const LandingPage = () => {
               </div>
 
               </div>
+            </div>
+
+            {/* Imagem do Especialista - Mobile abaixo do botão, Desktop à direita */}
+            <div className="relative mt-12 md:mt-0 md:absolute md:bottom-0 md:right-0 z-10 md:z-20 w-full md:w-[65%] lg:w-[60%] xl:w-[55%] md:h-full pointer-events-none overflow-visible md:overflow-hidden flex justify-center md:justify-end items-end self-end">
+              <img 
+                src="/ESPECIALISTA.png" 
+                alt="Especialista" 
+                className="h-[50vh] md:h-full w-auto object-contain object-bottom"
+                style={{ maxWidth: '100%', maxHeight: '100%' }}
+              />
             </div>
           </div>
         </div>
