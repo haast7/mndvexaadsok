@@ -12,9 +12,9 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen relative overflow-hidden flex flex-col">
       {/* Seção Hero com altura reduzida */}
-      <div className="relative md:h-[90vh] lg:h-[85vh] overflow-auto md:overflow-hidden" style={{ contain: 'layout style paint', contentVisibility: 'auto' }}>
+      <div className="relative md:h-[90vh] lg:h-[85vh] overflow-auto md:overflow-hidden">
         {/* Background com imagem - acompanha a altura do conteúdo */}
-        <div className="absolute inset-0 md:h-full" style={{ contain: 'layout style paint', willChange: 'auto' }}>
+        <div className="absolute inset-0 md:h-full">
           <picture>
             <source srcSet="/BG-_1__11zon.webp" type="image/webp" />
             <img 
@@ -24,9 +24,6 @@ const LandingPage = () => {
               loading="eager"
               fetchPriority="high"
               decoding="async"
-              width="1920"
-              height="1080"
-              style={{ aspectRatio: '16/9', contentVisibility: 'auto' }}
             />
           </picture>
           {/* Overlay gradiente para melhorar legibilidade do texto à esquerda */}
@@ -45,9 +42,6 @@ const LandingPage = () => {
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
-                width="1200"
-                height="1600"
-                style={{ aspectRatio: '3/4' }}
               />
             </picture>
           </div>
@@ -106,9 +100,6 @@ const LandingPage = () => {
               className="w-full max-h-[60vh] h-auto object-contain object-bottom"
               loading="lazy"
               decoding="async"
-              width="800"
-              height="1067"
-              style={{ aspectRatio: '3/4' }}
             />
           </picture>
         </div>
@@ -125,11 +116,9 @@ const LandingPage = () => {
                 src="/kingpanda-logo.png.png" 
                 alt="King Panda - Jogue com Responsabilidade" 
                 className="max-w-full h-auto"
-                style={{ maxHeight: '100px', aspectRatio: '2/1' }}
+                style={{ maxHeight: '100px' }}
                 loading="lazy"
                 decoding="async"
-                width="200"
-                height="100"
               />
             </picture>
           </div>

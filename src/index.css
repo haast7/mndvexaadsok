@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -61,12 +63,6 @@
     #229ED9 100%
   );
   background-size: 200% 100%;
-  /* Otimização: usar transform ao invés de background-position para evitar reflow */
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  contain: layout style paint;
-  /* will-change apenas quando animando */
-  will-change: transform;
 }
 
 .text-gradient-blue-mobile {
