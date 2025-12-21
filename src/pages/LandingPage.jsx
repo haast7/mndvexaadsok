@@ -13,19 +13,30 @@ const LandingPage = () => {
     <div className="min-h-screen relative overflow-hidden flex flex-col">
       {/* Seção Hero com altura reduzida */}
       <div className="relative md:h-[90vh] lg:h-[85vh] overflow-auto md:overflow-hidden">
-        {/* Background com imagem */}
-        <div className="absolute inset-0 md:h-full min-h-full">
+        {/* Background com imagem - acompanha a altura do conteúdo */}
+        <div className="absolute inset-0 md:h-full">
           <img 
             src="/BG.png" 
             alt="Background" 
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center md:object-center object-bottom md:object-center"
           />
           {/* Overlay gradiente para melhorar legibilidade do texto à esquerda */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
         </div>
 
+        {/* Imagem do Especialista - Desktop colada na base */}
+        <div className="hidden md:block absolute bottom-0 right-0 z-20 w-[70%] lg:w-[65%] xl:w-[60%] h-full pointer-events-none overflow-hidden">
+          <div className="relative w-full h-full flex items-end justify-end">
+            <img 
+              src="/ESPECIALISTA.png" 
+              alt="Especialista" 
+              className="w-auto h-full object-contain object-right-bottom object-bottom"
+            />
+          </div>
+        </div>
+
         {/* Conteúdo */}
-        <div className="relative z-20 md:h-full flex flex-col md:flex-row items-start md:items-center px-4 sm:px-6 lg:px-8 pt-8 pb-4 md:py-16">
+        <div className="relative z-20 flex flex-col md:flex-row items-start md:items-center px-4 sm:px-6 lg:px-8 pt-8 pb-0 md:pt-16 md:pb-0">
           <div className="max-w-7xl mx-auto w-full h-full flex flex-col md:flex-row items-start md:items-center justify-between">
             {/* Copy e CTA - Lado Esquerdo */}
             <div className="max-w-2xl text-center md:text-left relative z-30 w-full md:w-auto">
@@ -64,17 +75,16 @@ const LandingPage = () => {
 
               </div>
             </div>
-
-            {/* Imagem do Especialista - Mobile abaixo do texto "Acesso imediato", Desktop à direita */}
-            <div className="relative mt-3 md:mt-0 md:absolute md:bottom-0 md:right-0 z-10 md:z-20 w-full md:w-[65%] lg:w-[60%] xl:w-[55%] md:h-full pointer-events-none overflow-visible md:overflow-hidden flex justify-center md:justify-end items-end self-end">
-              <img 
-                src="/ESPECIALISTA.png" 
-                alt="Especialista" 
-                className="h-[50vh] md:h-full w-auto object-contain object-bottom"
-                style={{ maxWidth: '100%', maxHeight: '100%' }}
-              />
-            </div>
           </div>
+        </div>
+
+        {/* Imagem do Especialista - Mobile abaixo do texto "Acesso imediato" */}
+        <div className="block md:hidden relative mt-6 z-10 w-full pointer-events-none overflow-visible flex justify-center items-end px-4 sm:px-6">
+          <img 
+            src="/ESPECIALISTA.png" 
+            alt="Especialista" 
+            className="w-full max-h-[60vh] h-auto object-contain object-bottom"
+          />
         </div>
       </div>
 
