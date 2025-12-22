@@ -8,6 +8,11 @@
     <meta name="description" content="Aprenda a apostar com sabedoria e disciplina. Método comprovado para apostadores que buscam resultados consistentes." />
     <title>Método X - Mentoria em Apostas Esportivas</title>
     
+    <!-- Preconnect para origens críticas -->
+    <link rel="preconnect" href="https://dalhy.com" crossorigin />
+    <link rel="dns-prefetch" href="https://connect.facebook.net" />
+    <link rel="dns-prefetch" href="https://www.facebook.com" />
+    
     <!-- Preload da imagem crítica para LCP (mobile) -->
     <link rel="preload" as="image" href="/metodox/BG-_1__11zon.webp" fetchpriority="high" media="(max-width: 767px)" />
     <link rel="preload" as="image" href="/metodox/BG-_1__11zon.webp" fetchpriority="high" media="(min-width: 768px)" />
@@ -16,28 +21,76 @@
     <link rel="preconnect" href="https://firebasestorage.googleapis.com" crossorigin />
     <link rel="dns-prefetch" href="https://firebasestorage.googleapis.com" />
     
-    <!-- TrackPixel Script -->
+    <!-- CSS Crítico Inline para melhorar FCP -->
+    <style>
+      /* CSS crítico para prevenir FOUC */
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #000;
+      }
+      #root {
+        min-height: 100vh;
+      }
+      /* Prevenir layout shift */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+    
+    <!-- TrackPixel Script - Carregamento deferido após LCP -->
     <script>
-      (function() {
+      // Carrega TrackPixel apenas após LCP ou primeira interação
+      function loadTrackPixel() {
         var s = document.createElement('script');
         s.src = 'https://dalhy.com/tracking.js?f=2bfbeb36-59ce-48d4-906e-2e7e7390d317';
         s.async = true;
         document.head.appendChild(s);
-      })();
+      }
+      
+      // Carrega após LCP ou primeira interação do usuário
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadTrackPixel, { timeout: 2000 });
+      } else {
+        setTimeout(loadTrackPixel, 2000);
+      }
+      
+      // Fallback: carrega na primeira interação
+      ['mousedown', 'touchstart', 'keydown'].forEach(function(event) {
+        document.addEventListener(event, loadTrackPixel, { once: true, passive: true });
+      });
     </script>
     
-    <!-- Meta Pixel Code -->
+    <!-- Meta Pixel Code - Carregamento deferido após LCP -->
     <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '1359109655309883');
-      fbq('track', 'PageView');
+      // Carrega Meta Pixel apenas após LCP para não bloquear renderização
+      function loadMetaPixel() {
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1359109655309883');
+        fbq('track', 'PageView');
+      }
+      
+      // Carrega após LCP ou primeira interação
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadMetaPixel, { timeout: 2000 });
+      } else {
+        setTimeout(loadMetaPixel, 2000);
+      }
+      
+      // Fallback: carrega na primeira interação
+      ['mousedown', 'touchstart', 'keydown'].forEach(function(event) {
+        document.addEventListener(event, loadMetaPixel, { once: true, passive: true });
+      });
     </script>
     <!-- End Meta Pixel Code -->
   </head>
@@ -50,12 +103,13 @@
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     
-    <!-- TrackPixel Body Script -->
+    <!-- TrackPixel Body Script - Otimizado com event listener passivo -->
     <script>
       // Aguarda o TrackPixel carregar e inicializa tracking de cliques
-      window.addEventListener('load', function() {
+      // Usa requestIdleCallback para não bloquear renderização
+      function initTrackPixel() {
         if (window.TrackPixel) {
-          // Rastreia cliques em links do Telegram
+          // Rastreia cliques em links do Telegram com listener passivo
           document.addEventListener('click', function(e) {
             var target = e.target.closest('a[data-telegram-link]');
             if (target) {
@@ -64,9 +118,21 @@
                 action: 'enter_group'
               });
             }
-          });
+          }, { passive: true });
+        } else {
+          // Tenta novamente após um delay se TrackPixel ainda não carregou
+          setTimeout(initTrackPixel, 500);
         }
-      });
+      }
+      
+      // Inicializa após load ou idle
+      if ('requestIdleCallback' in window) {
+        window.addEventListener('load', function() {
+          requestIdleCallback(initTrackPixel, { timeout: 1000 });
+        });
+      } else {
+        window.addEventListener('load', initTrackPixel);
+      }
     </script>
   </body>
 </html>
