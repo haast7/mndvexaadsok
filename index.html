@@ -21,7 +21,7 @@
     <link rel="preconnect" href="https://firebasestorage.googleapis.com" crossorigin />
     <link rel="dns-prefetch" href="https://firebasestorage.googleapis.com" />
     
-    <!-- CSS Crítico Inline para melhorar FCP -->
+    <!-- CSS Crítico Inline para melhorar FCP e prevenir CLS -->
     <style>
       /* CSS crítico para prevenir FOUC */
       body {
@@ -34,10 +34,19 @@
       #root {
         min-height: 100vh;
       }
-      /* Prevenir layout shift */
+      /* Prevenir layout shift - aspect-ratio para imagens */
       img {
         max-width: 100%;
         height: auto;
+      }
+      /* Aspect ratio será definido inline nas imagens específicas */
+      /* Prevenir layout shift durante carregamento */
+      picture {
+        display: block;
+      }
+      /* Garantir que containers de imagem tenham dimensões */
+      [class*="object-cover"], [class*="object-contain"] {
+        display: block;
       }
     </style>
     
