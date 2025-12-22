@@ -37,7 +37,6 @@ const LandingPage = () => {
               decoding="async"
               width="1920"
               height="1080"
-              style={{ aspectRatio: '1920 / 1080' }}
             />
           </picture>
           {/* Overlay gradiente para melhorar legibilidade do texto à esquerda */}
@@ -58,7 +57,6 @@ const LandingPage = () => {
                 decoding="async"
                 width="1200"
                 height="1800"
-                style={{ aspectRatio: '1200 / 1800' }}
               />
             </picture>
           </div>
@@ -121,7 +119,6 @@ const LandingPage = () => {
               decoding="async"
               width="800"
               height="1200"
-              style={{ aspectRatio: '800 / 1200' }}
             />
           </picture>
         </div>
@@ -138,11 +135,9 @@ const LandingPage = () => {
                 src="/kingpanda-logo.png.png" 
                 alt="King Panda - Jogue com Responsabilidade" 
                 className="max-w-full h-auto"
-                style={{ maxHeight: '100px', aspectRatio: 'auto' }}
+                style={{ maxHeight: '100px' }}
                 loading="lazy"
                 decoding="async"
-                width="200"
-                height="100"
               />
             </picture>
           </div>
