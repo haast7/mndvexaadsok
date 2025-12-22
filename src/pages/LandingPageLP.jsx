@@ -15,84 +15,64 @@ const LandingPageLP = () => {
   const animationFrameRef = useRef(null);
   
   // Contador fake de pessoas entrando e vagas disponíveis
-  const [peopleEntered, setPeopleEntered] = useState(1247);
-  const [availableSpots, setAvailableSpots] = useState(37);
-  const [showPopup, setShowPopup] = useState(false);
-  const popupShownRef = useRef(false);
+  // Carrega do localStorage se existir, senão usa valores padrão
+  const [peopleEntered, setPeopleEntered] = useState(() => {
+    const saved = localStorage.getItem('lp_counter_people');
+    return saved ? parseInt(saved, 10) : 1247;
+  });
+  const [availableSpots, setAvailableSpots] = useState(() => {
+    const saved = localStorage.getItem('lp_counter_spots');
+    return saved ? parseInt(saved, 10) : 37;
+  });
 
   const handleTelegramClick = () => {
     trackTelegramClick('Click');
   };
 
   // Contador fake - simula pessoas entrando e vagas diminuindo
+  // Primeiras 15 vagas: 5 minutos | Restantes 22 vagas: 60 minutos
   useEffect(() => {
+    if (availableSpots <= 0) return;
+
+    // Define velocidade baseada na quantidade de vagas restantes
+    // Se tem mais de 22 vagas (primeiras 15), usa velocidade rápida
+    // Se tem 22 ou menos vagas, usa velocidade lenta
+    const isFastPhase = availableSpots > 22;
+    
+    // Calcula intervalo baseado na fase atual
+    let intervalTime;
+    if (isFastPhase) {
+      // Fase rápida: 15 vagas em 5 minutos = 1 vaga a cada 20 segundos (em média)
+      intervalTime = 20000 + Math.random() * 10000; // Entre 20-30 segundos
+    } else {
+      // Fase lenta: 22 vagas em 60 minutos = 1 vaga a cada ~163 segundos (em média)
+      intervalTime = 150000 + Math.random() * 30000; // Entre 150-180 segundos (~2.5-3 minutos)
+    }
+
     const interval = setInterval(() => {
-      // Aumenta pessoas entrando (aleatório entre 1-3)
-      setPeopleEntered(prev => prev + Math.floor(Math.random() * 3) + 1);
-      
-      // Diminui vagas disponíveis (aleatório, mas mais lento)
-      if (Math.random() > 0.7 && availableSpots > 0) {
+      if (availableSpots > 0) {
+        // Quantidade de pessoas que entram (1 pessoa)
+        const peopleEntering = 1;
+        
+        // Aumenta pessoas entrando
+        setPeopleEntered(prev => {
+          const newValue = prev + peopleEntering;
+          localStorage.setItem('lp_counter_people', newValue.toString());
+          return newValue;
+        });
+        
+        // Diminui vagas disponíveis proporcionalmente (1 pessoa = 1 vaga)
         setAvailableSpots(prev => {
-          const newValue = Math.max(0, prev - 1);
-          // Quando chegar a zero, abre o popup
-          if (newValue === 0 && !popupShownRef.current) {
-            popupShownRef.current = true;
-            setShowPopup(true);
-          }
+          const newValue = Math.max(0, prev - peopleEntering);
+          localStorage.setItem('lp_counter_spots', newValue.toString());
           return newValue;
         });
       }
-    }, 3000 + Math.random() * 2000); // Entre 3-5 segundos
+    }, intervalTime);
 
     return () => clearInterval(interval);
   }, [availableSpots]);
 
-  // Detecta tentativa de fechar a página (desktop e mobile)
-  useEffect(() => {
-    const handleBeforeUnload = (e) => {
-      if (!popupShownRef.current) {
-        e.preventDefault();
-        e.returnValue = '';
-        setShowPopup(true);
-        popupShownRef.current = true;
-        return '';
-      }
-    };
-
-    // Para desktop
-    window.addEventListener('beforeunload', handleBeforeUnload);
-
-    // Para mobile - detecta quando o usuário tenta sair
-    const handleVisibilityChange = () => {
-      if (document.hidden && !popupShownRef.current) {
-        // Pequeno delay para garantir que não seja um falso positivo
-        setTimeout(() => {
-          if (document.hidden && !popupShownRef.current) {
-            setShowPopup(true);
-            popupShownRef.current = true;
-          }
-        }, 500);
-      }
-    };
-
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-
-    // Detecta tentativa de voltar (mobile)
-    const handlePopState = () => {
-      if (!popupShownRef.current) {
-        setShowPopup(true);
-        popupShownRef.current = true;
-      }
-    };
-
-    window.addEventListener('popstate', handlePopState);
-
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-      window.removeEventListener('popstate', handlePopState);
-    };
-  }, []);
 
   // Auto scroll quando não está arrastando
   useEffect(() => {
@@ -371,7 +351,7 @@ const LandingPageLP = () => {
                     {' '}em{' '}
                     <span className="inline-flex items-baseline gap-1">
                       <span className="text-gradient-money">R$</span>
-                      <span className="text-gradient-money">5.000</span>
+                      <span className="text-gradient-money">1.000</span>
                     </span>
                     <svg className="inline-block w-6 h-6 md:w-7 md:h-7 ml-2 text-orange-400" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.12l-6.87 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
@@ -380,7 +360,7 @@ const LandingPageLP = () => {
                   
                   {/* Subheadline */}
                   <p className="text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed max-w-2xl">
-                    Te ensino a fazer de R$ 5k a R$ 30k por mês no meu grupo vip.
+                    Descubra como parei de perder e passei a tirar mais de um salário só com o BacBo
                   </p>
                 </div>
 
@@ -666,11 +646,11 @@ const LandingPageLP = () => {
               Aqui você aprende a decidir certo.
             </p>
             <div className="mt-6 pt-6 border-t border-orange-500/30">
-              <span className="inline-flex items-center gap-3 text-white font-semibold text-lg md:text-xl px-6 py-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg group-hover:bg-white/15 group-hover:border-white/30 transition-all duration-300">
-                Clique para entrar no grupo vip do telegram
-                <svg className="w-6 h-6 md:w-7 md:h-7 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+              <span className="inline-flex items-center gap-3 text-white font-semibold text-lg md:text-xl px-6 py-3 rounded-xl bg-gradient-to-r from-[#0088cc] to-[#229ED9] shadow-lg hover:from-[#006699] hover:to-[#0088cc] transition-all duration-300">
+                <svg className="w-6 h-6 md:w-7 md:h-7 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.12l-6.87 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
                 </svg>
+                Clique para entrar no grupo vip do telegram
               </span>
             </div>
           </a>
@@ -703,119 +683,6 @@ const LandingPageLP = () => {
           </div>
         </div>
       </footer>
-
-      {/* Popup de Segunda Chance */}
-      {showPopup && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
-          <div className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-2xl shadow-2xl border-2 border-orange-500/50 max-w-lg w-full p-6 md:p-8 animate-scale-in">
-            {/* Botão fechar */}
-            <button
-              onClick={() => setShowPopup(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
-              aria-label="Fechar"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-
-            {/* Conteúdo do Popup */}
-            <div className="text-center space-y-6">
-              {/* Ícone de alerta/oportunidade */}
-              <div className="flex justify-center">
-                <div className="relative">
-                  <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center animate-pulse">
-                    <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-
-              {/* Título */}
-              <div className="space-y-2">
-                <h2 className="text-2xl md:text-3xl font-bold text-white">
-                  ⚠️ Vagas Esgotadas!
-                </h2>
-                <p className="text-lg md:text-xl text-orange-400 font-semibold">
-                  Mas você ainda tem uma chance! 🎯
-                </p>
-              </div>
-
-              {/* Oferta Irresistível */}
-              <div className="bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-xl p-6 border border-orange-500/30 space-y-4">
-                <h3 className="text-xl md:text-2xl font-bold text-white">
-                  Entre no Grupo Básico GRÁTIS
-                </h3>
-                <p className="text-lg md:text-xl font-bold text-center">
-                  Aprenda a fazer{' '}
-                  <span className="inline-flex items-baseline gap-1">
-                    <span className="text-gradient-money">R$</span>
-                    <span className="text-gradient-money">1.000</span>
-                  </span>
-                  {' '}com{' '}
-                  <span className="inline-flex items-baseline gap-1">
-                    <span className="text-gradient-money">R$</span>
-                    <span className="text-gradient-money">100</span>
-                  </span>
-                  .
-                </p>
-                <div className="space-y-3 text-left">
-                  <div className="flex items-start gap-3">
-                    <svg className="w-6 h-6 text-green-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <p className="text-gray-300">
-                      <span className="font-bold text-white">Aprenda o básico</span> enquanto aguarda novas vagas
-                    </p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="w-6 h-6 text-green-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <p className="text-gray-300">
-                      <span className="font-bold text-white">Seja avisado em primeira mão</span> quando abrirem novas vagas VIP
-                    </p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="w-6 h-6 text-green-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <p className="text-gray-300">
-                      <span className="font-bold text-white">100% grátis</span> - sem compromisso
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* CTA do Popup */}
-              <a
-                href={trackingLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-telegram-link="true"
-                onClick={() => {
-                  handleTelegramClick();
-                  setShowPopup(false);
-                }}
-                className="block w-full px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold text-lg md:text-xl rounded-xl shadow-2xl hover:shadow-orange-500/50 transform hover:scale-105 transition-all duration-300 relative overflow-hidden animate-shimmer-orange"
-              >
-                <span className="flex items-center justify-center gap-3">
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.12l-6.87 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
-                  </svg>
-                  Entrar no Grupo Básico AGORA
-                </span>
-              </a>
-
-              {/* Texto de urgência */}
-              <p className="text-sm text-gray-400">
-                Não perca esta oportunidade única! ⏰
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

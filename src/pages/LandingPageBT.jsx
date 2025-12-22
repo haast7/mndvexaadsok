@@ -90,7 +90,7 @@ const LandingPageBT = () => {
                   
                   {/* Subheadline */}
                   <p className="text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed max-w-2xl">
-                    Descubra como larguei meu emprego e agora ganho R$ 15 mil por mês apenas apostando 2 horas por dia.
+                    Descubra como mudei de vida e agora ganho mais de R$5 mil apostando apenas 2 horas por dia
                   </p>
                 </div>
 
@@ -114,7 +114,7 @@ const LandingPageBT = () => {
                   
                   {/* Microcopy Agressivo */}
                   <p className="text-orange-400 text-sm md:text-base font-semibold">
-                    100% grátis - buque o que é seu 💰
+                    100% grátis | <span className="text-gradient-orange-plus font-black">+</span>4 mil alunos
                   </p>
                 </div>
               </div>
@@ -295,11 +295,11 @@ const LandingPageBT = () => {
               Aqui você aprende a decidir certo.
             </p>
             <div className="mt-6 pt-6 border-t border-orange-500/30">
-              <span className="inline-flex items-center gap-3 text-white font-semibold text-lg md:text-xl px-6 py-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg group-hover:bg-white/15 group-hover:border-white/30 transition-all duration-300">
-                Clique para entrar no grupo vip do telegram
-                <svg className="w-6 h-6 md:w-7 md:h-7 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+              <span className="inline-flex items-center gap-3 text-white font-semibold text-lg md:text-xl px-6 py-3 rounded-xl bg-gradient-to-r from-[#0088cc] to-[#229ED9] shadow-lg hover:from-[#006699] hover:to-[#0088cc] transition-all duration-300">
+                <svg className="w-6 h-6 md:w-7 md:h-7 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.12l-6.87 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
                 </svg>
+                Clique para entrar no grupo vip do telegram
               </span>
             </div>
           </a>
