@@ -21,3 +21,4 @@ Write-Host "Imagens organizadas com sucesso!"
 
 
 
+

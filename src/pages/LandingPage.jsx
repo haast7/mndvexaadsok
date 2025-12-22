@@ -16,7 +16,18 @@ const LandingPage = () => {
         {/* Background com imagem - acompanha a altura do conteúdo */}
         <div className="absolute inset-0 md:h-full">
           <picture>
-            <source srcSet="/metodox/BG-_1__11zon.webp" type="image/webp" />
+            {/* Mobile: versão otimizada menor */}
+            <source 
+              media="(max-width: 767px)" 
+              srcSet="/metodox/BG-_1__11zon.webp" 
+              type="image/webp" 
+            />
+            {/* Desktop: versão completa */}
+            <source 
+              media="(min-width: 768px)" 
+              srcSet="/metodox/BG-_1__11zon.webp" 
+              type="image/webp" 
+            />
             <img 
               src="/BG.png" 
               alt="Background" 
@@ -24,6 +35,8 @@ const LandingPage = () => {
               loading="eager"
               fetchPriority="high"
               decoding="async"
+              width="1920"
+              height="1080"
             />
           </picture>
           {/* Overlay gradiente para melhorar legibilidade do texto à esquerda */}
@@ -42,6 +55,8 @@ const LandingPage = () => {
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
+                width="1200"
+                height="1800"
               />
             </picture>
           </div>
@@ -91,6 +106,7 @@ const LandingPage = () => {
         </div>
 
         {/* Imagem do Especialista - Mobile abaixo do texto "Acesso imediato" */}
+        {/* IMPORTANTE: Se esta imagem for o LCP element no mobile, mudamos para eager */}
         <div className="block md:hidden relative mt-6 z-10 w-full pointer-events-none overflow-visible flex justify-center items-end px-4 sm:px-6">
           <picture>
             <source srcSet="/metodox/ESPECIALISTA-_1_.webp" type="image/webp" />
@@ -98,8 +114,11 @@ const LandingPage = () => {
               src="/ESPECIALISTA.png" 
               alt="Especialista" 
               className="w-full max-h-[60vh] h-auto object-contain object-bottom"
-              loading="lazy"
+              loading="eager"
+              fetchPriority="high"
               decoding="async"
+              width="800"
+              height="1200"
             />
           </picture>
         </div>
