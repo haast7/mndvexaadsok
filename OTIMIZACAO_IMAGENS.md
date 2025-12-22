@@ -161,3 +161,5 @@ Não esqueça de otimizar também:
 3. Testar no navegador
 4. Verificar redução de tamanho no DevTools
 
+
+

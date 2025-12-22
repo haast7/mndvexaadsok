@@ -16,7 +16,7 @@ const LandingPage = () => {
         {/* Background com imagem - acompanha a altura do conteúdo */}
         <div className="absolute inset-0 md:h-full">
           <picture>
-            <source srcSet="/BG-_1__11zon.webp" type="image/webp" />
+            <source srcSet="/metodox/BG-_1__11zon.webp" type="image/webp" />
             <img 
               src="/BG.png" 
               alt="Background" 
@@ -34,7 +34,7 @@ const LandingPage = () => {
         <div className="hidden md:block absolute bottom-0 right-0 z-20 w-[70%] lg:w-[65%] xl:w-[60%] h-full pointer-events-none overflow-hidden">
           <div className="relative w-full h-full flex items-end justify-end">
             <picture>
-              <source srcSet="/ESPECIALISTA-_1_.webp" type="image/webp" />
+              <source srcSet="/metodox/ESPECIALISTA-_1_.webp" type="image/webp" />
               <img 
                 src="/ESPECIALISTA.png" 
                 alt="Especialista" 
@@ -93,7 +93,7 @@ const LandingPage = () => {
         {/* Imagem do Especialista - Mobile abaixo do texto "Acesso imediato" */}
         <div className="block md:hidden relative mt-6 z-10 w-full pointer-events-none overflow-visible flex justify-center items-end px-4 sm:px-6">
           <picture>
-            <source srcSet="/ESPECIALISTA-_1_.webp" type="image/webp" />
+            <source srcSet="/metodox/ESPECIALISTA-_1_.webp" type="image/webp" />
             <img 
               src="/ESPECIALISTA.png" 
               alt="Especialista" 

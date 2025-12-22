@@ -1,0 +1,339 @@
+import React from 'react';
+import useTrackingLink from '../hooks/useTrackingLink';
+import { trackTelegramClick } from '../config/tracking';
+
+const LandingPageBT = () => {
+  const trackingLink = useTrackingLink();
+
+  const handleTelegramClick = () => {
+    trackTelegramClick('Click');
+  };
+
+  return (
+    <div className="min-h-screen relative overflow-hidden flex flex-col">
+      {/* Seção Hero - IGUAL À METODOX */}
+      <div className="relative md:h-[90vh] lg:h-[85vh] overflow-auto md:overflow-hidden bg-black">
+        {/* Background preto */}
+        <div className="absolute inset-0 md:h-full bg-black"></div>
+        
+        {/* Background com imagem por cima */}
+        <div className="absolute inset-0 md:h-full">
+          <picture>
+            {/* Desktop */}
+            <source 
+              media="(min-width: 768px)" 
+              srcSet="/bt/BG-_2_.webp" 
+              type="image/webp" 
+            />
+            {/* Mobile */}
+            <source 
+              media="(max-width: 767px)" 
+              srcSet="/bt/BG-_2_.webp" 
+              type="image/webp" 
+            />
+            {/* Fallback */}
+            <img 
+              src="/bt/BG-_2_.webp" 
+              alt="Background" 
+              className="w-full h-full object-cover object-center md:object-center object-bottom md:object-center"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </picture>
+          {/* Overlay gradiente para melhorar legibilidade do texto à esquerda */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
+        </div>
+
+        {/* Imagem do Especialista - Desktop colada na base */}
+        <div className="hidden md:block absolute bottom-0 right-8 lg:right-12 xl:right-16 z-20 w-[55%] lg:w-[50%] xl:w-[45%] h-full pointer-events-none overflow-hidden">
+          <div className="relative w-full h-full flex items-end justify-end">
+            <picture>
+              <source srcSet="/bt/ESPECIALISTA.webp" type="image/webp" />
+              <img 
+                src="/bt/ESPECIALISTA.webp" 
+                alt="Especialista" 
+                className="w-auto object-contain object-right-bottom"
+                style={{ maxHeight: '92%', maxWidth: '100%', height: 'auto', width: 'auto' }}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
+            </picture>
+          </div>
+        </div>
+
+        {/* Conteúdo Hero */}
+        <div className="relative z-20 flex flex-col md:flex-row items-start md:items-center px-4 sm:px-6 lg:px-8 pt-8 pb-0 md:pt-16 md:pb-0">
+          <div className="max-w-7xl mx-auto w-full h-full flex flex-col md:flex-row items-start md:items-center justify-between">
+            {/* Copy e CTA - Lado Esquerdo */}
+            <div className="max-w-2xl text-center md:text-left relative z-30 w-full md:w-auto">
+              <div className="space-y-8 md:space-y-8">
+                <div className="space-y-4 md:space-y-5">
+                  {/* Headline Principal - Impacto Máximo */}
+                  <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+                    Aprenda a fazer{' '}
+                    <span className="inline-flex items-baseline gap-1">
+                      <span className="text-gradient-money">R$</span>
+                      <span className="text-gradient-money">200</span>
+                    </span>
+                    {' '}a{' '}
+                    <span className="inline-flex items-baseline gap-1">
+                      <span className="text-gradient-money">R$</span>
+                      <span className="text-gradient-money">500</span>
+                    </span>
+                    {' '}reais por dia de forma consistente
+                    <svg className="inline-block w-6 h-6 md:w-7 md:h-7 ml-2 text-orange-400" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.12l-6.87 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+                    </svg>
+                  </h1>
+                  
+                  {/* Subheadline */}
+                  <p className="text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed max-w-2xl">
+                    Descubra como larguei meu emprego e agora ganho R$ 15 mil por mês apenas apostando 2 horas por dia.
+                  </p>
+                </div>
+
+                {/* CTA Hero */}
+                <div className="space-y-4">
+                  <a 
+                    href={trackingLink}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    data-telegram-link="true"
+                    onClick={handleTelegramClick}
+                    className="inline-block px-10 py-5 text-white font-bold text-xl rounded-xl shadow-2xl hover:shadow-orange-500/50 transform hover:scale-105 transition-all duration-300 relative overflow-hidden animate-shimmer-orange"
+                  >
+                    <span className="flex items-center justify-center gap-3">
+                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.12l-6.87 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+                      </svg>
+                      Entrar no grupo agora
+                    </span>
+                  </a>
+                  
+                  {/* Microcopy Agressivo */}
+                  <p className="text-orange-400 text-sm md:text-base font-semibold">
+                    100% grátis - buque o que é seu 💰
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Imagem do Especialista - Mobile */}
+        <div className="block md:hidden relative mt-6 z-10 w-full pointer-events-none overflow-visible flex justify-center items-end px-4 sm:px-6">
+          <picture>
+            <source srcSet="/bt/ESPECIALISTA.webp" type="image/webp" />
+            <img 
+              src="/bt/ESPECIALISTA.webp" 
+              alt="Especialista" 
+              className="w-full max-h-[60vh] h-auto object-contain object-bottom"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+        </div>
+      </div>
+
+      {/* Faixa Ao Vivo Animada */}
+      <section className="relative bg-orange-500 py-2 md:py-2.5 overflow-hidden">
+        <div className="marquee-container">
+          <div className="marquee-content">
+            {[...Array(20)].map((_, i) => (
+              <div key={i} className="flex items-center gap-2 mx-6 whitespace-nowrap">
+                <svg className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0 text-black" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17 10.5V7a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h12a1 1 0 001-1v-3.5l4 4v-11l-4 4z"/>
+                </svg>
+                <span className="text-white font-medium text-sm md:text-base">AO VIVO</span>
+              </div>
+            ))}
+          </div>
+          <div className="marquee-content" aria-hidden="true">
+            {[...Array(20)].map((_, i) => (
+              <div key={i} className="flex items-center gap-2 mx-6 whitespace-nowrap">
+                <svg className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0 text-black" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17 10.5V7a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h12a1 1 0 001-1v-3.5l4 4v-11l-4 4z"/>
+                </svg>
+                <span className="text-white font-medium text-sm md:text-base">AO VIVO</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Seção 2: Espelhamento de Dor - Onde a Conversão Explode */}
+      <section className="relative bg-black py-16 md:py-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-8">
+            <div className="text-center md:text-left">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">
+                Se você:
+              </h2>
+              
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start gap-4 p-4 bg-gray-900/50 rounded-lg border-l-4 border-orange-500">
+                  <span className="text-orange-500 text-2xl font-bold">→</span>
+                  <p className="text-lg md:text-xl text-gray-300 flex-1">
+                    Já entrou confiante e saiu frustrado
+                  </p>
+                </div>
+                
+                <div className="flex items-start gap-4 p-4 bg-gray-900/50 rounded-lg border-l-4 border-orange-500">
+                  <span className="text-orange-500 text-2xl font-bold">→</span>
+                  <p className="text-lg md:text-xl text-gray-300 flex-1">
+                    Já perdeu por falta de controle
+                  </p>
+                </div>
+                
+                <div className="flex items-start gap-4 p-4 bg-gray-900/50 rounded-lg border-l-4 border-orange-500">
+                  <span className="text-orange-500 text-2xl font-bold">→</span>
+                  <p className="text-lg md:text-xl text-gray-300 flex-1">
+                    Já achou que "agora vai" e não foi
+                  </p>
+                </div>
+                
+                <div className="flex items-start gap-4 p-4 bg-gray-900/50 rounded-lg border-l-4 border-orange-500">
+                  <span className="text-orange-500 text-2xl font-bold">→</span>
+                  <p className="text-lg md:text-xl text-gray-300 flex-1">
+                    Já sentiu que estava sempre um passo atrás
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-r from-orange-900/30 to-orange-800/30 border-2 border-orange-500/50 rounded-xl p-6 md:p-8 mt-8">
+                <p className="text-2xl md:text-3xl lg:text-4xl text-white font-bold mb-3">
+                  O problema nunca foi o jogo.
+                </p>
+                <p className="text-2xl md:text-3xl lg:text-4xl text-orange-400 font-bold">
+                  Foi a forma como você decidiu.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Seção 4: Autoridade Implícita */}
+      <section className="relative bg-black py-16 md:py-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="space-y-6">
+            <p className="text-2xl md:text-3xl lg:text-4xl text-gray-300">
+              Aqui não tem achismo.
+            </p>
+            <p className="text-3xl md:text-4xl lg:text-5xl text-white font-bold">
+              Tem leitura, critério e direção clara.
+            </p>
+            {/* Selo 100% Grátis */}
+            <div className="pt-8 flex justify-center">
+              <div className="inline-flex items-center gap-2 bg-gray-800/50 px-4 py-2 rounded-lg border border-orange-500/30">
+                <span className="text-gray-300 font-medium text-sm md:text-base">
+                  100% grátis - buque o que é seu 💰
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Seção 5: CTA Principal + Urgência Psicológica */}
+      <section className="relative bg-gradient-to-b from-black via-gray-900 to-black py-16 md:py-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center space-y-8">
+            {/* CTA Principal */}
+            <div className="space-y-6">
+              <a 
+                href={trackingLink}
+                target="_blank" 
+                rel="noopener noreferrer"
+                data-telegram-link="true"
+                onClick={handleTelegramClick}
+                className="inline-block px-12 py-6 text-white font-bold text-2xl md:text-3xl rounded-xl shadow-2xl hover:shadow-orange-500/50 transform hover:scale-105 transition-all duration-300 relative overflow-hidden animate-shimmer-orange"
+              >
+                <span className="flex items-center justify-center gap-4">
+                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.12l-6.87 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+                  </svg>
+                  Entrar no grupo agora
+                </span>
+              </a>
+              
+              <p className="text-orange-400 text-lg md:text-xl font-bold">
+                Quanto mais você demora, mais oportunidades perde.
+              </p>
+            </div>
+
+            {/* Urgência Psicológica */}
+            <div className="pt-8 border-t border-gray-700 space-y-4">
+              <p className="text-xl md:text-2xl text-gray-300">
+                Você pode continuar tentando sozinho.
+              </p>
+              <p className="text-2xl md:text-3xl text-white font-bold">
+                Ou pode entrar onde o jogo começa a fazer sentido.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Seção 6: Fechamento Forte - CTA Secundário */}
+      <section className="relative bg-black py-16 md:py-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <a 
+            href={trackingLink}
+            target="_blank" 
+            rel="noopener noreferrer"
+            data-telegram-link="true"
+            onClick={handleTelegramClick}
+            className="block bg-gradient-to-br from-gray-800 to-gray-900 border-2 border-orange-500 rounded-xl p-8 md:p-12 shadow-2xl hover:shadow-orange-500/30 transform hover:scale-[1.02] transition-all duration-300 cursor-pointer group"
+          >
+            <p className="text-2xl md:text-3xl lg:text-4xl text-white font-bold mb-3 group-hover:text-orange-400 transition-colors">
+              O jogo não perdoa quem decide errado.
+            </p>
+            <p className="text-2xl md:text-3xl lg:text-4xl text-orange-400 font-bold mb-4">
+              Aqui você aprende a decidir certo.
+            </p>
+            <div className="mt-6 pt-6 border-t border-orange-500/30">
+              <span className="inline-flex items-center gap-3 text-white font-semibold text-lg md:text-xl px-6 py-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg group-hover:bg-white/15 group-hover:border-white/30 transition-all duration-300">
+                Clique para entrar no grupo vip do telegram
+                <svg className="w-6 h-6 md:w-7 md:h-7 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.12l-6.87 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      {/* Rodapé - IGUAL À METODOX */}
+      <footer className="relative z-10 bg-gray-900 text-gray-300 py-8 mt-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Logo King Panda */}
+          <div className="mb-6 flex justify-center">
+            <picture>
+              <source srcSet="/kingpanda-logo.png.webp" type="image/webp" />
+              <img 
+                src="/kingpanda-logo.png.png" 
+                alt="King Panda - Jogue com Responsabilidade" 
+                className="max-w-full h-auto"
+                style={{ maxHeight: '100px' }}
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </div>
+
+          {/* Texto de Disclaimer */}
+          <div className="bg-gray-800/50 rounded-lg p-6">
+            <p className="text-xs text-gray-400 leading-relaxed text-center">
+              Esse site não é afiliado ao Meta Ads ou qualquer ativo da marca. Aposta não é investimento e os ganhos referentes aos métodos mencionados nesta página não são garantidos. Jogue com muita responsabilidade sabendo que apostas envolvem vícios e dependências e são apenas permitidas para maiores de 18 anos. Não cobrimos nenhum tipo de prejuízo feito pelo próprio cliente.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default LandingPageBT;

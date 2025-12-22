@@ -33,3 +33,5 @@ if (Test-Path $projectPath) {
     Write-Host "❌ Diretório não encontrado: $projectPath"
 }
 
+
+

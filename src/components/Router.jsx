@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Home from '../pages/Home';
 import LandingPage from '../pages/LandingPage';
+import LandingPageBT from '../pages/LandingPageBT';
+import LandingPageLP from '../pages/LandingPageLP';
 import JogoResponsavel from '../pages/JogoResponsavel';
 import PoliticaPrivacidade from '../pages/PoliticaPrivacidade';
 import TermosUso from '../pages/TermosUso';
@@ -62,6 +64,10 @@ const Router = () => {
   switch (path) {
     case '/metodox':
       return <LandingPage />;
+    case '/bt':
+      return <LandingPageBT />;
+    case '/lp':
+      return <LandingPageLP />;
     case '/jogo-responsavel':
       return <JogoResponsavel />;
     case '/politica-privacidade':
