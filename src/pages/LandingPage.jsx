@@ -1,12 +1,26 @@
-import React from 'react';
-import useTrackingLink from '../hooks/useTrackingLink';
-import { trackTelegramClick } from '../config/tracking';
+import React, { useEffect } from 'react';
+
+// Link específico para a landing page metodox
+const TELEGRAM_LINK_METODOX = 'https://t.me/+pwepqdq4lT80MGJh';
 
 const LandingPage = () => {
-  const trackingLink = useTrackingLink();
+  // Carrega o script específico do track4you.app apenas nesta página
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://track4you.app/9f968b3a-4843-431d-814d-50a948d683ac.js';
+    script.defer = true;
+    document.head.appendChild(script);
+
+    // Cleanup: remove o script quando o componente for desmontado
+    return () => {
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
+  }, []);
 
   const handleTelegramClick = () => {
-    trackTelegramClick('Click');
+    // Tracking será feito pelo script track4you.app
   };
 
   return (
@@ -80,7 +94,7 @@ const LandingPage = () => {
 
               <div className="space-y-4">
                 <a 
-                  href={trackingLink}
+                  href={TELEGRAM_LINK_METODOX}
                   target="_blank" 
                   rel="noopener noreferrer"
                   data-telegram-link="true"

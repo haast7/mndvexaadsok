@@ -196,3 +196,4 @@ Após essas otimizações:
 
 
 
+
