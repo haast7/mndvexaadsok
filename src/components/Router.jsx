@@ -7,6 +7,7 @@ import LandingPageAds from '../pages/LandingPageAds';
 import JogoResponsavel from '../pages/JogoResponsavel';
 import PoliticaPrivacidade from '../pages/PoliticaPrivacidade';
 import TermosUso from '../pages/TermosUso';
+import { trackPageView } from '../services/metaTracking';
 
 const Router = () => {
   const [path, setPath] = useState(() => {
@@ -59,6 +60,19 @@ const Router = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [path]);
+
+  // Track PageView quando a rota muda (SPA navigation)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Pequeno delay para garantir que a página está renderizada
+      setTimeout(() => {
+        trackPageView({
+          source_url: window.location.href,
+          content_name: document.title
+        });
+      }, 100);
     }
   }, [path]);
 

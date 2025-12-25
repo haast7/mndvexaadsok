@@ -47,7 +47,8 @@
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '1359109655309883');
-      fbq('track', 'PageView');
+      // PageView será trackeado via metaTracking.js com event_id para deduplicação
+      // Não trackear aqui para evitar duplicação
     </script>
     <!-- End Meta Pixel Code -->
   </head>
