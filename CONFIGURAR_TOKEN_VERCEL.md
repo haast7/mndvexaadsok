@@ -157,3 +157,6 @@ Após configurar o token e fazer deploy:
 **Status:** ✅ Token recebido e pronto para configuração  
 **Próximo passo:** Adicionar na Vercel e fazer deploy 🚀
 
+
+
+

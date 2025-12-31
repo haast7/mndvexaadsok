@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Home from '../pages/Home';
 import LandingPage from '../pages/LandingPage';
 import LandingPageBT from '../pages/LandingPageBT';
@@ -16,6 +16,9 @@ const Router = () => {
     }
     return '/';
   });
+  
+  // Ref para rastrear se já foi feito o tracking inicial
+  const hasTrackedInitialPageView = useRef(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -65,15 +68,22 @@ const Router = () => {
 
   // Track PageView quando a rota muda (SPA navigation)
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // Pequeno delay para garantir que a página está renderizada
-      setTimeout(() => {
-        trackPageView({
-          source_url: window.location.href,
-          content_name: document.title
-        });
-      }, 100);
-    }
+    if (typeof window === 'undefined') return;
+    
+    const trackPageViewForRoute = async () => {
+      // Aguardar um pouco para garantir que a página está renderizada
+      // e que o Pixel está pronto
+      await new Promise(resolve => setTimeout(resolve, 200));
+      
+      await trackPageView({
+        source_url: window.location.href,
+        content_name: document.title
+      });
+    };
+    
+    // Track PageView sempre que o path mudar
+    // O useRef garante que não há duplicação na primeira renderização
+    trackPageViewForRoute();
   }, [path]);
 
   switch (path) {

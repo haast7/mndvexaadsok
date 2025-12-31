@@ -56,6 +56,19 @@ export default async function handler(req, res) {
       });
     }
 
+    // Coletar IP do cliente (importante para matching)
+    // Vercel fornece o IP real através de headers específicos
+    const clientIp = req.headers['x-forwarded-for']?.split(',')[0]?.trim() 
+      || req.headers['x-real-ip'] 
+      || req.connection?.remoteAddress 
+      || req.socket?.remoteAddress
+      || undefined;
+    
+    // Coletar User Agent do cliente (se não fornecido)
+    const clientUserAgent = user_data?.client_user_agent 
+      || req.headers['user-agent'] 
+      || undefined;
+    
     // Preparar dados do evento
     // Hash email e telefone se fornecidos
     const hashedEmail = user_data?.em ? await hashSHA256(user_data.em) : undefined;
@@ -65,33 +78,41 @@ export default async function handler(req, res) {
       event_name,
       event_time: event_time || Math.floor(Date.now() / 1000),
       event_id,
-      event_source_url: user_data?.source_url || req.headers.referer || '',
+      event_source_url: user_data?.source_url || req.headers.referer || req.headers.origin || '',
       action_source,
       user_data: {
-        ...user_data,
-        // Garantir que fbp e fbc sejam strings (não objetos)
-        fbp: typeof user_data?.fbp === 'string' ? user_data.fbp : undefined,
-        fbc: typeof user_data?.fbc === 'string' ? user_data.fbc : undefined,
-        // Garantir que external_id seja string
-        external_id: typeof user_data?.external_id === 'string' ? user_data.external_id : undefined,
-        // Email e telefone hasheados
+        // Coletar dados do servidor primeiro (mais confiáveis)
+        client_ip_address: clientIp,
+        client_user_agent: clientUserAgent,
+        // Dados do cliente (browser)
+        fbp: typeof user_data?.fbp === 'string' && user_data.fbp ? user_data.fbp : undefined,
+        fbc: typeof user_data?.fbc === 'string' && user_data.fbc ? user_data.fbc : undefined,
+        // External ID se disponível
+        external_id: typeof user_data?.external_id === 'string' && user_data.external_id ? user_data.external_id : undefined,
+        // Email e telefone hasheados (se fornecidos)
         em: hashedEmail,
         ph: hashedPhone,
-        // Remover campos originais não hasheados se existirem
+        // Source URL do evento
+        source_url: user_data?.source_url || undefined,
       },
       custom_data: custom_data || {}
     };
     
-    // Remover campos originais não hasheados
-    delete eventData.user_data.email;
-    delete eventData.user_data.phone;
-
-    // Remover campos undefined
+    // Remover campos undefined (Meta prefere não receber campos vazios)
     Object.keys(eventData.user_data).forEach(key => {
-      if (eventData.user_data[key] === undefined) {
+      if (eventData.user_data[key] === undefined || eventData.user_data[key] === null || eventData.user_data[key] === '') {
         delete eventData.user_data[key];
       }
     });
+    
+    // Remover campos undefined do custom_data também
+    if (eventData.custom_data) {
+      Object.keys(eventData.custom_data).forEach(key => {
+        if (eventData.custom_data[key] === undefined || eventData.custom_data[key] === null) {
+          delete eventData.custom_data[key];
+        }
+      });
+    }
 
     // Preparar payload para Meta Conversions API
     const payload = {

@@ -2,10 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Router from './components/Router.jsx'
 import './index.css'
-import { initPageViewTracking } from './services/metaTracking'
 
-// Inicializar tracking de PageView após o React carregar
-initPageViewTracking();
+// NOTA: O tracking de PageView é gerenciado pelo Router.jsx
+// para evitar duplicação em navegação SPA
+// Não chamar initPageViewTracking() aqui
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

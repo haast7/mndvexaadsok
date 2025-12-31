@@ -252,6 +252,13 @@ Se estiver funcionando, você verá eventos sendo deduplicados corretamente.
 - [x] Hook React criado (`src/hooks/useMetaTracking.js`)
 - [x] Integração automática no Router
 - [x] Pixel atualizado para não duplicar PageView
+- [x] **Melhorias implementadas (2024):**
+  - [x] Aguarda Pixel estar totalmente carregado antes de trackear
+  - [x] Aguarda cookie `_fbp` estar disponível (até 2 segundos)
+  - [x] Coleta IP do cliente corretamente na API route
+  - [x] Suporte para `external_id` quando disponível
+  - [x] `event_time` consistente entre Pixel e Conversions API
+  - [x] Removida duplicação de PageView entre main.jsx e Router.jsx
 - [ ] **Configurar `META_CONVERSIONS_API_ACCESS_TOKEN` na Vercel** ← FAZER AGORA
 - [ ] **Fazer deploy**
 - [ ] **Testar no Events Manager**
@@ -260,6 +267,34 @@ Se estiver funcionando, você verá eventos sendo deduplicados corretamente.
 
 ---
 
-**Última atualização:** Implementação completa ✅  
+## 🆕 Melhorias Implementadas (Última Atualização)
+
+### 1. **Aguarda Pixel Estar Pronto**
+- Função `waitForPixelReady()` aguarda até 5 segundos pelo Pixel estar totalmente carregado
+- Garante que eventos sejam enviados apenas quando o Pixel está pronto
+
+### 2. **Melhora Cobertura de fbp**
+- Função `getFbp()` agora aguarda até 2 segundos pelo cookie `_fbp` estar disponível
+- Aumenta significativamente a taxa de cobertura de eventos
+
+### 3. **Coleta IP do Cliente**
+- API route agora coleta corretamente o IP do cliente através de headers do Vercel
+- Melhora matching de eventos no Meta
+
+### 4. **Suporte para external_id**
+- Permite passar `external_id` quando disponível
+- Melhora deduplicação e matching de eventos
+
+### 5. **Event Time Consistente**
+- Mesmo `event_time` usado tanto no Pixel quanto na Conversions API
+- Garante melhor deduplicação
+
+### 6. **Remoção de Duplicação**
+- Removido `initPageViewTracking()` do `main.jsx`
+- Apenas `Router.jsx` gerencia PageView tracking (evita duplicação)
+
+---
+
+**Última atualização:** Melhorias implementadas conforme melhores práticas Meta 2024 ✅  
 **Próximo passo:** Configurar Access Token na Vercel 🎯
 
