@@ -193,3 +193,4 @@ No **Test Events**, você deve ver eventos sendo deduplicados corretamente:
 
 **Última atualização:** 2024 - Melhorias implementadas conforme melhores práticas Meta ✅
 
+
