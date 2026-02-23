@@ -13,10 +13,7 @@ const LandingPageBT = () => {
     <div className="min-h-screen relative overflow-hidden flex flex-col">
       {/* Seção Hero - IGUAL À METODOX */}
       <div className="relative md:h-[90vh] lg:h-[85vh] overflow-auto md:overflow-hidden bg-black">
-        {/* Background preto */}
-        <div className="absolute inset-0 md:h-full bg-black"></div>
-        
-        {/* Background com imagem por cima */}
+        {/* Background com imagem */}
         <div className="absolute inset-0 md:h-full">
           <picture>
             {/* Desktop */}
@@ -68,34 +65,29 @@ const LandingPageBT = () => {
           <div className="max-w-7xl mx-auto w-full h-full flex flex-col md:flex-row items-start md:items-center justify-between">
             {/* Copy e CTA - Lado Esquerdo */}
             <div className="max-w-2xl text-center md:text-left relative z-30 w-full md:w-auto">
-              <div className="space-y-8 md:space-y-8">
-                <div className="space-y-4 md:space-y-5">
-                  {/* Headline Principal - Impacto Máximo */}
-                  <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
-                    Aprenda a fazer{' '}
-                    <span className="inline-flex items-baseline gap-1">
-                      <span className="text-gradient-money">R$</span>
-                      <span className="text-gradient-money">200</span>
-                    </span>
-                    {' '}a{' '}
-                    <span className="inline-flex items-baseline gap-1">
-                      <span className="text-gradient-money">R$</span>
-                      <span className="text-gradient-money">500</span>
-                    </span>
-                    {' '}reais por dia de forma consistente
-                    <svg className="inline-block w-6 h-6 md:w-7 md:h-7 ml-2 text-orange-400" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.12l-6.87 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
-                    </svg>
-                  </h1>
-                  
-                  {/* Subheadline */}
-                  <p className="text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed max-w-2xl">
-                    Descubra como mudei de vida e agora ganho mais de R$5 mil apostando apenas 2 horas por dia
-                  </p>
-                </div>
+              <div className="space-y-4 md:space-y-5">
+                {/* Topo - grande */}
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                  VOCÊ NÃO VAI PAGAR NADA. <span className="text-gradient-money">É 100% GRATUITO</span>
+                </h1>
 
-                {/* CTA Hero */}
-                <div className="space-y-4">
+                {/* Disclaimer */}
+                <p className="text-sm md:text-base text-gray-400 italic">
+                  Isso não é robô e não é grupo de sinais.
+                </p>
+
+                {/* Parágrafo do meio */}
+                <p className="text-sm md:text-base text-gray-300 leading-relaxed">
+                  Dentro da Comunidade, eu vou te mostrar <span className="text-gradient-money font-semibold">passo a passo</span> a estratégia que eu utilizo. Aplicando corretamente, os resultados tendem a ser semelhantes aos da maioria dos alunos que já estão lá: entre <span className="text-gradient-money font-semibold">R$200 e R$700 por dia</span>, com gestão e segurança.
+                </p>
+
+                {/* Em baixo - grande */}
+                <p className="text-lg md:text-xl lg:text-2xl font-bold text-white leading-snug">
+                  Vou te ensinar como eu transformo uma banca de <span className="text-gradient-money">R$200</span> em até <span className="text-gradient-money">R$700</span> reais, utilizando a minha própria estratégia, de forma simples e prática.
+                </p>
+
+                {/* CTA Hero - botão mantido */}
+                <div className="pt-2">
                   <a 
                     href={trackingLink}
                     target="_blank" 
@@ -111,11 +103,6 @@ const LandingPageBT = () => {
                       Entrar no grupo agora
                     </span>
                   </a>
-                  
-                  {/* Microcopy Agressivo */}
-                  <p className="text-orange-400 text-sm md:text-base font-semibold">
-                    100% grátis | <span className="text-gradient-orange-plus font-black">+</span>4 mil alunos
-                  </p>
                 </div>
               </div>
             </div>
@@ -137,200 +124,26 @@ const LandingPageBT = () => {
         </div>
       </div>
 
-      {/* Faixa Ao Vivo Animada */}
-      <section className="relative bg-orange-500 py-2 md:py-2.5 overflow-hidden">
-        <div className="marquee-container">
-          <div className="marquee-content">
-            {[...Array(20)].map((_, i) => (
-              <div key={i} className="flex items-center gap-2 mx-6 whitespace-nowrap">
-                <svg className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0 text-black" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M17 10.5V7a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h12a1 1 0 001-1v-3.5l4 4v-11l-4 4z"/>
-                </svg>
-                <span className="text-white font-medium text-sm md:text-base">AO VIVO</span>
-              </div>
-            ))}
-          </div>
-          <div className="marquee-content" aria-hidden="true">
-            {[...Array(20)].map((_, i) => (
-              <div key={i} className="flex items-center gap-2 mx-6 whitespace-nowrap">
-                <svg className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0 text-black" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M17 10.5V7a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h12a1 1 0 001-1v-3.5l4 4v-11l-4 4z"/>
-                </svg>
-                <span className="text-white font-medium text-sm md:text-base">AO VIVO</span>
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* Sessão 2: fundo preto + só a imagem King Panda */}
+      <section className="relative z-10 bg-black flex justify-center items-center py-8 md:py-10">
+        <img
+          src="/kingpanda-logo.png.webp"
+          alt="King Panda - Jogue com responsabilidade"
+          className="h-12 md:h-14 w-auto object-contain"
+          loading="lazy"
+          decoding="async"
+        />
       </section>
 
-      {/* Seção 2: Espelhamento de Dor - Onde a Conversão Explode */}
-      <section className="relative bg-black py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-8">
-            <div className="text-center md:text-left">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">
-                Se você:
-              </h2>
-              
-              <div className="space-y-4 mb-8">
-                <div className="flex items-start gap-4 p-4 bg-gray-900/50 rounded-lg border-l-4 border-orange-500">
-                  <span className="text-orange-500 text-2xl font-bold">→</span>
-                  <p className="text-lg md:text-xl text-gray-300 flex-1">
-                    Já entrou confiante e saiu frustrado
-                  </p>
-                </div>
-                
-                <div className="flex items-start gap-4 p-4 bg-gray-900/50 rounded-lg border-l-4 border-orange-500">
-                  <span className="text-orange-500 text-2xl font-bold">→</span>
-                  <p className="text-lg md:text-xl text-gray-300 flex-1">
-                    Já perdeu por falta de controle
-                  </p>
-                </div>
-                
-                <div className="flex items-start gap-4 p-4 bg-gray-900/50 rounded-lg border-l-4 border-orange-500">
-                  <span className="text-orange-500 text-2xl font-bold">→</span>
-                  <p className="text-lg md:text-xl text-gray-300 flex-1">
-                    Já achou que "agora vai" e não foi
-                  </p>
-                </div>
-                
-                <div className="flex items-start gap-4 p-4 bg-gray-900/50 rounded-lg border-l-4 border-orange-500">
-                  <span className="text-orange-500 text-2xl font-bold">→</span>
-                  <p className="text-lg md:text-xl text-gray-300 flex-1">
-                    Já sentiu que estava sempre um passo atrás
-                  </p>
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-r from-orange-900/30 to-orange-800/30 border-2 border-orange-500/50 rounded-xl p-6 md:p-8 mt-8">
-                <p className="text-2xl md:text-3xl lg:text-4xl text-white font-bold mb-3">
-                  O problema nunca foi o jogo.
-                </p>
-                <p className="text-2xl md:text-3xl lg:text-4xl text-orange-400 font-bold">
-                  Foi a forma como você decidiu.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Seção 4: Autoridade Implícita */}
-      <section className="relative bg-black py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="space-y-6">
-            <p className="text-2xl md:text-3xl lg:text-4xl text-gray-300">
-              Aqui não tem achismo.
-            </p>
-            <p className="text-3xl md:text-4xl lg:text-5xl text-white font-bold">
-              Tem leitura, critério e direção clara.
-            </p>
-            {/* Selo 100% Grátis */}
-            <div className="pt-8 flex justify-center">
-              <div className="inline-flex items-center gap-2 bg-gray-800/50 px-4 py-2 rounded-lg border border-orange-500/30">
-                <span className="text-gray-300 font-medium text-sm md:text-base">
-                  100% grátis - buque o que é seu 💰
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Seção 5: CTA Principal + Urgência Psicológica */}
-      <section className="relative bg-gradient-to-b from-black via-gray-900 to-black py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-8">
-            {/* CTA Principal */}
-            <div className="space-y-6">
-              <a 
-                href={trackingLink}
-                target="_blank" 
-                rel="noopener noreferrer"
-                data-telegram-link="true"
-                onClick={handleTelegramClick}
-                className="inline-block px-12 py-6 text-white font-bold text-2xl md:text-3xl rounded-xl shadow-2xl hover:shadow-orange-500/50 transform hover:scale-105 transition-all duration-300 relative overflow-hidden animate-shimmer-orange"
-              >
-                <span className="flex items-center justify-center gap-4">
-                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.12l-6.87 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
-                  </svg>
-                  Entrar no grupo agora
-                </span>
-              </a>
-              
-              <p className="text-orange-400 text-lg md:text-xl font-bold">
-                Quanto mais você demora, mais oportunidades perde.
-              </p>
-            </div>
-
-            {/* Urgência Psicológica */}
-            <div className="pt-8 border-t border-gray-700 space-y-4">
-              <p className="text-xl md:text-2xl text-gray-300">
-                Você pode continuar tentando sozinho.
-              </p>
-              <p className="text-2xl md:text-3xl text-white font-bold">
-                Ou pode entrar onde o jogo começa a fazer sentido.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Seção 6: Fechamento Forte - CTA Secundário */}
-      <section className="relative bg-black py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <a 
-            href={trackingLink}
-            target="_blank" 
-            rel="noopener noreferrer"
-            data-telegram-link="true"
-            onClick={handleTelegramClick}
-            className="block bg-gradient-to-br from-gray-800 to-gray-900 border-2 border-orange-500 rounded-xl p-8 md:p-12 shadow-2xl hover:shadow-orange-500/30 transform hover:scale-[1.02] transition-all duration-300 cursor-pointer group"
-          >
-            <p className="text-2xl md:text-3xl lg:text-4xl text-white font-bold mb-3 group-hover:text-orange-400 transition-colors">
-              O jogo não perdoa quem decide errado.
-            </p>
-            <p className="text-2xl md:text-3xl lg:text-4xl text-orange-400 font-bold mb-4">
-              Aqui você aprende a decidir certo.
-            </p>
-            <div className="mt-6 pt-6 border-t border-orange-500/30">
-              <span className="inline-flex items-center gap-3 text-white font-semibold text-lg md:text-xl px-6 py-3 rounded-xl bg-gradient-to-r from-[#0088cc] to-[#229ED9] shadow-lg hover:from-[#006699] hover:to-[#0088cc] transition-all duration-300">
-                <svg className="w-6 h-6 md:w-7 md:h-7 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.12l-6.87 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
-                </svg>
-                Clique para entrar no grupo vip do telegram
-              </span>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      {/* Rodapé - IGUAL À METODOX */}
-      <footer className="relative z-10 bg-gray-900 text-gray-300 py-8 mt-auto">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Logo King Panda */}
-          <div className="mb-6 flex justify-center">
-            <picture>
-              <source srcSet="/kingpanda-logo.png.webp" type="image/webp" />
-              <img 
-                src="/kingpanda-logo.png.png" 
-                alt="King Panda - Jogue com Responsabilidade" 
-                className="max-w-full h-auto"
-                style={{ maxHeight: '100px' }}
-                loading="lazy"
-                decoding="async"
-              />
-            </picture>
-          </div>
-
-          {/* Texto de Disclaimer */}
-          <div className="bg-gray-800/50 rounded-lg p-6">
-            <p className="text-xs text-gray-400 leading-relaxed text-center">
+      {/* Sessão 3: texto do footer (aviso legal) */}
+      <footer className="relative z-10 mt-auto">
+        <section className="bg-[#1e293b] text-white py-5 md:py-6" aria-label="Aviso legal">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p className="text-xs md:text-sm leading-relaxed text-white/95 text-justify">
               Esse site não é afiliado ao Meta Ads ou qualquer ativo da marca. Aposta não é investimento e os ganhos referentes aos métodos mencionados nesta página não são garantidos. Jogue com muita responsabilidade sabendo que apostas envolvem vícios e dependências e são apenas permitidas para maiores de 18 anos. Não cobrimos nenhum tipo de prejuízo feito pelo próprio cliente.
             </p>
           </div>
-        </div>
+        </section>
       </footer>
     </div>
   );
