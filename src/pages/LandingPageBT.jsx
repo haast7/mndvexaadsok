@@ -129,7 +129,7 @@ const LandingPageBT = () => {
         <img
           src="/kingpanda-logo.png.webp"
           alt="King Panda - Jogue com responsabilidade"
-          className="h-12 md:h-14 w-auto object-contain"
+          className="h-16 md:h-20 lg:h-24 w-auto object-contain"
           loading="lazy"
           decoding="async"
         />
