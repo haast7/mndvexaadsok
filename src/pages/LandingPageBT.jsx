@@ -127,7 +127,7 @@ const LandingPageBT = () => {
       {/* Sessão 2: fundo preto + só a imagem King Panda */}
       <section className="relative z-10 bg-black flex justify-center items-center py-8 md:py-10">
         <img
-          src="/kingpanda-logo.png.webp"
+          src="/+18.webp"
           alt="King Panda - Jogue com responsabilidade"
           className="h-16 md:h-20 lg:h-24 w-auto object-contain"
           loading="lazy"
