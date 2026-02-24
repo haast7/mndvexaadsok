@@ -1,9 +1,21 @@
-import React from 'react';
-import useTrackingLink from '../hooks/useTrackingLink';
+import React, { useEffect } from 'react';
 import { trackTelegramClick } from '../config/tracking';
 
+// Mesmo link e script da metodox (track4you + Telegram direto)
+const TELEGRAM_LINK_BT = 'https://t.me/+pwepqdq4lT80MGJh';
+const TRACK4YOU_SCRIPT = 'https://track4you.app/9f968b3a-4843-431d-814d-50a948d683ac.js';
+
 const LandingPageBT = () => {
-  const trackingLink = useTrackingLink();
+  // Carrega o script track4you.app (igual à metodox)
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = TRACK4YOU_SCRIPT;
+    script.defer = true;
+    document.head.appendChild(script);
+    return () => {
+      if (script.parentNode) script.parentNode.removeChild(script);
+    };
+  }, []);
 
   const handleTelegramClick = () => {
     trackTelegramClick('Click');
@@ -89,7 +101,7 @@ const LandingPageBT = () => {
                 {/* CTA Hero - botão mantido */}
                 <div className="pt-2">
                   <a 
-                    href={trackingLink}
+                    href={TELEGRAM_LINK_BT}
                     target="_blank" 
                     rel="noopener noreferrer"
                     data-telegram-link="true"
